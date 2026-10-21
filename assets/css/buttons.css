@@ -1,0 +1,149 @@
+:root {
+    --button-blue: #0877bd;
+    --button-blue-hover: #006dbb;
+    --button-pale: #f2f8fd;
+    --button-pale-hover: #e3f1fb;
+    --button-border: #a8cee9;
+}
+
+body .button,
+body button.button,
+body input.button,
+body .site-header nav > a.button {
+    min-height: 50px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 13px 22px;
+    border: 1px solid var(--button-blue);
+    border-radius: 8px;
+    background: linear-gradient(135deg, #1185cb 0%, var(--button-blue) 58%, #066db0 100%);
+    box-shadow: 0 4px 10px #0877bd24, inset 0 1px #ffffff2b;
+    color: #fff;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 750;
+    line-height: 1.35;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 200ms ease, background 200ms ease, border-color 200ms ease, box-shadow 200ms ease, color 200ms ease;
+}
+
+body main .reference-home .button,
+body main .reference-about .button {
+    min-height: 50px;
+    padding: 13px 22px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 750;
+}
+
+body .button:hover,
+body button.button:hover,
+body input.button:hover,
+body .site-header nav > a.button:hover {
+    transform: translateY(-2px);
+    border-color: var(--button-blue-hover);
+    background: linear-gradient(135deg, #1592d8 0%, #0877bd 55%, #006dbb 100%);
+    box-shadow: 0 9px 20px #0877bd40, inset 0 1px #ffffff40;
+    color: #fff;
+    text-decoration: none;
+}
+
+body .button:active,
+body button.button:active,
+body input.button:active,
+body .site-header nav > a.button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px #0877bd24;
+}
+
+body .button:focus-visible,
+body button.button:focus-visible,
+body input.button:focus-visible,
+body .site-header nav > a.button:focus-visible {
+    outline: 3px solid #70b9e8;
+    outline-offset: 3px;
+}
+
+body .button-outline,
+body .button-white {
+    border-color: var(--button-border);
+    background: linear-gradient(135deg, #ffffff 0%, var(--button-pale) 100%);
+    box-shadow: 0 3px 9px #0877bd12, inset 0 1px #fff;
+    color: #075e9c;
+}
+
+body main .reference-home .button-outline,
+body main .reference-about .button-outline {
+    border: 1px solid var(--button-border);
+    background: linear-gradient(135deg, #ffffff 0%, var(--button-pale) 100%);
+    color: #075e9c;
+}
+
+body .button-outline:hover,
+body .button-white:hover {
+    transform: translateY(-2px);
+    border-color: #79b5df;
+    background: linear-gradient(135deg, #f7fbff 0%, var(--button-pale-hover) 100%);
+    box-shadow: 0 8px 18px #0877bd20, inset 0 1px #fff;
+    color: #064f83;
+}
+
+body main .reference-home .button-outline:hover,
+body main .reference-about .button-outline:hover {
+    border-color: #79b5df;
+    background: linear-gradient(135deg, #f7fbff 0%, var(--button-pale-hover) 100%);
+    color: #064f83;
+}
+
+body .button-small,
+body .site-header nav > a.button {
+    min-height: 46px;
+    padding: 11px 19px;
+    border-radius: 7px;
+    font-size: 14px;
+}
+
+body .site-header nav > a.button,
+body .site-header nav > a.button:hover {
+    color: #fff;
+}
+
+body .button:disabled,
+body button.button:disabled,
+body input.button:disabled,
+body .button[aria-disabled="true"] {
+    transform: none;
+    box-shadow: none;
+    cursor: not-allowed;
+    opacity: .58;
+}
+
+.button .direction-icon {
+    flex: 0 0 auto;
+    transition: transform 200ms ease;
+}
+
+.button:hover .direction-icon {
+    transform: translateX(4px);
+}
+
+@media (max-width: 767px) {
+    body main .reference-home .hero-actions .button,
+    body main .reference-about .hero-actions .button {
+        min-height: 48px;
+        padding: 12px 16px;
+        font-size: 14px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body .button,
+    body .button .direction-icon {
+        transition-duration: .01ms;
+    }
+}

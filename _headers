@@ -1,0 +1,6 @@
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: DENY
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://challenges.cloudflare.com https://mintcream-porpoise-486035.hostingersite.com; frame-src https://www.google.com https://challenges.cloudflare.com; form-action 'self' https://mintcream-porpoise-486035.hostingersite.com; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; upgrade-insecure-requests

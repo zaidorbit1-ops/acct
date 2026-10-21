@@ -1,0 +1,373 @@
+.site-header {
+    z-index: 100;
+}
+
+.site-header .header-inner {
+    position: static;
+}
+
+.site-header nav {
+    align-items: center;
+    gap: clamp(14px, 1.5vw, 26px);
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.site-header nav > a,
+.site-header .services-menu > summary {
+    position: relative;
+    color: #082b50;
+    transition: color 160ms ease, background-color 160ms ease;
+}
+
+.site-header nav > a:not(.button),
+.site-header .services-menu > summary {
+    min-height: 44px;
+    padding: 10px 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.site-header nav > a:not(.button)::after,
+.site-header .services-menu > summary::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 3px;
+    left: 0;
+    height: 2px;
+    background: #0877bd;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 160ms ease;
+}
+
+.site-header nav > a:not(.button):hover,
+.site-header nav > a:not(.button)[aria-current="page"],
+.site-header .services-menu > summary:hover,
+.site-header .services-menu[open] > summary {
+    color: #0877bd;
+}
+
+.site-header nav > a:not(.button):hover::after,
+.site-header nav > a:not(.button)[aria-current="page"]::after,
+.site-header .services-menu > summary:hover::after,
+.site-header .services-menu[open] > summary::after {
+    transform: scaleX(1);
+}
+
+.site-header nav > a.button {
+    flex-shrink: 0;
+    min-height: 48px;
+    padding: 12px 22px;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 750;
+    transition: background-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.site-header nav > a.button:hover {
+    background: #075c9c;
+    box-shadow: 0 5px 14px #03244826;
+    transform: translateY(-1px);
+}
+
+.site-header nav a:focus-visible,
+.site-header .services-menu > summary:focus-visible,
+.site-header .menu-toggle:focus-visible {
+    outline: 3px solid #65b7ee;
+    outline-offset: 4px;
+}
+
+.site-header .services-menu {
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+}
+
+.site-header .services-menu > summary {
+    font: inherit;
+}
+
+.site-header .services-menu > summary {
+    list-style: none;
+    cursor: pointer;
+}
+
+.site-header .services-menu > summary::-webkit-details-marker {
+    display: none;
+}
+
+.site-header .menu-indicator {
+    flex: 0 0 auto;
+    transition: transform 180ms ease, background-color 180ms ease;
+}
+
+.site-header .services-menu[open] .menu-indicator {
+    transform: rotate(180deg);
+}
+
+.site-header .mega-menu {
+    top: calc(100% - 4px);
+    right: auto;
+    left: 50%;
+    z-index: 101;
+    width: min(1480px, calc(100vw - 64px));
+    margin-left: 0;
+    padding: 14px;
+    overflow: auto;
+    border: 1px solid #e1eaf3;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 24px 70px #0324482b, 0 4px 14px #0324480d;
+    animation: nav-menu-enter 160ms ease-out;
+    display: block;
+    transform: translateX(-50%);
+}
+
+.site-header .mega-groups {
+    width: 100%;
+    margin-inline: auto;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 9px;
+}
+
+.site-header .mega-groups > div {
+    min-width: 0;
+    padding: 10px 9px 8px;
+    border: 1px solid #e8eef4;
+    border-radius: 8px;
+    background: #fbfcfe;
+    transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.site-header .mega-groups > div:hover {
+    border-color: #d8e9f5;
+    box-shadow: 0 5px 14px #0324480a;
+}
+
+.site-header .nav-heading {
+    min-height: 46px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 5px;
+    padding: 0 2px 7px;
+    border-bottom: 1px solid #e3ebf2;
+    color: #092e53;
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 800;
+    line-height: 1.4;
+}
+
+.site-header .nav-category-icon {
+    flex: 0 0 28px;
+    width: 28px;
+    height: 28px;
+    display: grid;
+    place-items: center;
+    border: 1px solid #d9ebf8;
+    border-radius: 7px;
+    background: #eef7fd;
+    color: #0877bd;
+}
+
+.site-header .nav-category-icon svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.site-header .mega-groups a {
+    min-height: 39px;
+    position: relative;
+    margin-inline: -5px;
+    padding: 6px 18px 6px 6px;
+    border-radius: 5px;
+    color: #102f50;
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 650;
+    line-height: 1.45;
+    transition: color 150ms ease, background-color 150ms ease, padding 150ms ease;
+}
+
+.site-header .mega-groups a::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 6px;
+    width: 11px;
+    height: 11px;
+    border-top: 1.6px solid currentColor;
+    border-right: 1.6px solid currentColor;
+    opacity: 0;
+    transform: translate(-3px, -50%) rotate(45deg) scale(.8);
+    transition: opacity 150ms ease, transform 150ms ease;
+}
+
+.site-header .mega-groups a:hover,
+.site-header .mega-groups a:focus-visible {
+    padding-left: 8px;
+    background: #edf6fc;
+    color: #006db5;
+    text-decoration: none;
+}
+
+.site-header .mega-groups a:hover::after,
+.site-header .mega-groups a:focus-visible::after {
+    opacity: 1;
+    transform: translate(0, -50%) rotate(45deg) scale(.8);
+}
+
+.site-header .mega-groups a[aria-current="page"] {
+    background: #e8f4fc;
+    color: #006db5;
+    font-weight: 800;
+}
+
+.site-header .services-menu.has-current-page > summary {
+    color: #0877bd;
+}
+
+.site-header .services-menu.has-current-page > summary::after {
+    transform: scaleX(1);
+}
+
+.site-header .menu-toggle {
+    font-family: "Manrope", Arial, sans-serif;
+    font-weight: 700;
+}
+
+@keyframes nav-menu-enter {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@media (min-width: 1101px) {
+    .site-header nav {
+        display: flex;
+    }
+
+    .site-header .menu-toggle {
+        display: none;
+    }
+
+    .site-header .services-menu:not([open]) > .mega-menu {
+        display: none;
+    }
+
+    .site-header .services-menu:hover > .mega-menu,
+    .site-header .services-menu:focus-within > .mega-menu,
+    .site-header .services-menu[open] > .mega-menu {
+        display: block;
+    }
+}
+
+@media (max-width: 1100px) {
+    .site-header nav {
+        align-items: stretch;
+        gap: 0;
+        font-size: 16px;
+    }
+
+    .site-header nav > a:not(.button),
+    .site-header .services-menu > summary {
+        min-height: 52px;
+        padding: 14px 0;
+    }
+
+    .site-header nav > a:not(.button)::after,
+    .site-header .services-menu > summary::after {
+        bottom: 7px;
+        right: auto;
+        width: 52px;
+    }
+
+    .site-header .services-menu {
+        align-self: stretch;
+        display: block;
+    }
+
+    .site-header .services-menu > summary {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .site-header .mega-menu {
+        top: 100%;
+        left: 0;
+        width: 100%;
+        margin-left: 0;
+        padding: 14px;
+        border: 0;
+        border-radius: 12px;
+        background: #fff;
+        box-shadow: none;
+        transform: none;
+    }
+
+    .site-header .mega-groups {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .site-header .mega-groups > div {
+        padding: 10px 8px 8px;
+    }
+
+    .site-header .nav-heading {
+        min-height: 46px;
+        gap: 7px;
+        margin-bottom: 6px;
+        padding-bottom: 8px;
+        font-size: 14px;
+    }
+
+    .site-header .mega-groups a {
+        min-height: 42px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 767px) {
+    .site-header .mega-groups {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .site-header .mega-groups > div {
+        padding: 12px;
+    }
+
+    .site-header .nav-heading {
+        font-size: 15px;
+    }
+
+    .site-header .mega-groups a {
+        min-height: 44px;
+        font-size: 15px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .site-header *,
+    .site-header *::before,
+    .site-header *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}

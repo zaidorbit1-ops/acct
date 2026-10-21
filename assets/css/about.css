@@ -1,0 +1,379 @@
+body.page-about main .reference-about .about-hero {
+    display: block;
+    gap: 0;
+    padding-top: 30px;
+    background:
+        radial-gradient(ellipse at 78% 48%, #e2f0fb 0%, transparent 35%),
+        linear-gradient(115deg, #f4f9fd 0%, #f4f9fd 47%, #eaf4fb 100%);
+}
+
+body.page-about main .reference-about .about-hero-content {
+    z-index: 2;
+    display: flex;
+    min-height: 560px;
+    align-items: center;
+    padding-bottom: 30px;
+}
+
+body.page-about main .reference-about .about-hero-content .breadcrumb {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-height: 0;
+    padding: 0;
+    line-height: 1.4;
+}
+
+body.page-about main .reference-about .about-hero-content .hero-copy {
+    width: 47%;
+    max-width: 600px;
+}
+
+body.page-about main .reference-about .about-hero-content .hero-copy > p {
+    max-width: 560px;
+}
+
+body.page-about main .reference-about .about-hero .hero-visual {
+    z-index: 3;
+    top: 54px;
+    right: max(40px, calc((100vw - var(--max)) / 2));
+    bottom: 48px;
+    left: auto;
+    width: min(46%, 610px);
+    height: auto;
+    overflow: visible;
+}
+
+body.page-about main .reference-about .about-hero .photo-about-review {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border: 1px solid #d2e3ef;
+    border-radius: 20px;
+    background: #e7f2fa;
+    box-shadow: 0 18px 42px #062a4a20;
+    transition: border-color 240ms ease, box-shadow 240ms ease;
+}
+
+body.page-about main .reference-about .about-hero .hero-visual .photo {
+    animation: none;
+    isolation: isolate;
+}
+
+body.page-about main .reference-about .about-hero .photo-about-review img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 62% center;
+    filter: none;
+    transform: none;
+    transition: none;
+}
+
+body.page-about main .reference-about .about-hero .hero-visual:hover .photo-about-review,
+body.page-about main .reference-about .about-hero .hero-visual:focus-within .photo-about-review {
+    border-color: #9bc4e1;
+    box-shadow: 0 29px 58px #062a4a30;
+}
+
+body.page-about main .reference-about .about-hero .hero-visual:hover .photo-about-review img,
+body.page-about main .reference-about .about-hero .hero-visual:focus-within .photo-about-review img {
+    transform: none;
+    filter: none;
+}
+
+body.page-about main .reference-about .about-strengths article {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #dce8f1;
+    border-radius: 12px;
+    background: linear-gradient(145deg, #fff 0%, #f5faff 100%);
+    box-shadow: 0 4px 13px #082b5009;
+    transition: transform 220ms cubic-bezier(.2, .7, .2, 1), border-color 220ms ease, box-shadow 220ms ease;
+}
+
+body.page-about main .reference-about .about-strengths article::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 3px;
+    background: linear-gradient(180deg, #74bee8, #0877bd);
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 220ms ease;
+}
+
+body.page-about main .reference-about .about-strengths article:hover,
+body.page-about main .reference-about .about-strengths article:focus-within {
+    transform: translateY(-4px);
+    border-color: #a2c8e2;
+    box-shadow: 0 13px 26px #082b5018;
+}
+
+body.page-about main .reference-about .about-strengths article:hover::before,
+body.page-about main .reference-about .about-strengths article:focus-within::before {
+    transform: scaleY(1);
+}
+
+body.page-about main .reference-about .about-strengths article > .service-icon {
+    padding: 6px;
+    border-radius: 10px;
+    background: #e8f4fc;
+    transition: transform 220ms ease, background-color 220ms ease;
+}
+
+body.page-about main .reference-about .about-strengths article:hover > .service-icon,
+body.page-about main .reference-about .about-strengths article:focus-within > .service-icon {
+    transform: translateX(3px);
+    background: #dceefa;
+}
+
+body.page-about main .reference-about .about-values {
+    background:
+        radial-gradient(ellipse at 92% 8%, #e0effa 0%, transparent 34%),
+        #f2f8fe;
+}
+
+body.page-about main .reference-about .values-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    align-items: stretch;
+    gap: 16px;
+    margin-top: 26px;
+}
+
+body.page-about main .reference-about .values-grid > article {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-width: 0;
+    padding: 22px 18px;
+    border: 1px solid #d8e7f2;
+    position: relative;
+    border-radius: 12px;
+    background: linear-gradient(145deg, #fff 0%, #f9fcff 100%);
+    box-shadow: 0 4px 13px #082b5009;
+    text-align: center;
+    transition: transform 220ms cubic-bezier(.2, .7, .2, 1), border-color 220ms ease, box-shadow 220ms ease;
+}
+
+body.page-about main .reference-about .values-grid > article:hover,
+body.page-about main .reference-about .values-grid > article:focus-within {
+    transform: translateY(-4px);
+    border-color: #a2c9e3;
+    background: #fff;
+    box-shadow: 0 13px 26px #082b5018;
+}
+
+body.page-about main .reference-about .value-symbol {
+    flex: 0 0 66px;
+    margin: 0 0 15px;
+    transition: transform 240ms cubic-bezier(.2, .7, .2, 1), border-color 220ms ease, background-color 220ms ease, box-shadow 220ms ease;
+}
+
+body.page-about main .reference-about .values-grid > article:hover .value-symbol,
+body.page-about main .reference-about .values-grid > article:focus-within .value-symbol {
+    transform: translateY(-4px);
+    border-color: #8ebfe0;
+    background: #d8edfa;
+    box-shadow: 0 7px 16px #0877bd1c;
+}
+
+body.page-about main .reference-about .values-grid h3 {
+    margin: 0;
+}
+
+body.page-about main .reference-about .values-grid p {
+    flex: 1;
+    margin: 10px 0 0;
+    color: #52677c;
+}
+
+body.page-about main .reference-about .about-team-card {
+    border: 1px solid #dce7f0;
+    border-radius: 12px;
+    box-shadow: 0 4px 13px #082b5009;
+    transition: transform 240ms cubic-bezier(.2, .7, .2, 1), border-color 220ms ease, box-shadow 240ms ease;
+}
+
+body.page-about main .reference-about .about-team-card:hover,
+body.page-about main .reference-about .about-team-card:focus-within {
+    transform: translateY(-5px);
+    border-color: #9ec5e1;
+    box-shadow: 0 15px 30px #082b501a;
+}
+
+body.page-about main .reference-about .team-portrait-space {
+    overflow: hidden;
+    background: linear-gradient(145deg, #eef6fc, #e2eff9);
+}
+
+body.page-about main .reference-about .team-portrait-space img {
+    transition: transform 420ms cubic-bezier(.2, .7, .2, 1), filter 320ms ease;
+}
+
+body.page-about main .reference-about .about-team-card:hover .team-portrait-space img,
+body.page-about main .reference-about .about-team-card:focus-within .team-portrait-space img {
+    transform: scale(1.045);
+    filter: saturate(1.05);
+}
+
+body.page-about main .reference-about .team-details {
+    flex: 1;
+    background: linear-gradient(180deg, #fff 0%, #f9fcfe 100%);
+}
+
+body.page-about main .reference-about .team-biography {
+    color: #52677c;
+}
+
+body.page-about main .reference-about .office-concept-scene {
+    border: 1px solid #d9e7f1;
+    border-radius: 14px;
+    box-shadow: 0 12px 28px #082b5012;
+}
+
+body.page-about main .reference-about .office-concept-scene img {
+    transition: transform 460ms cubic-bezier(.2, .7, .2, 1), filter 320ms ease;
+}
+
+body.page-about main .reference-about .office-concept:hover .office-concept-scene img {
+    transform: scale(1.035);
+    filter: saturate(1.04);
+}
+
+body.page-about main .reference-about .about-office-copy {
+    padding: 22px;
+    border: 1px solid #e0eaf2;
+    border-radius: 12px;
+    background: linear-gradient(145deg, #fff 0%, #f7fbfe 100%);
+    box-shadow: 0 5px 16px #082b500a;
+}
+
+body.page-about .scroll-reveal {
+    opacity: 1;
+    transform: translateY(18px);
+    transition: transform 620ms cubic-bezier(.2, .7, .2, 1);
+}
+
+body.page-about .scroll-reveal.is-visible {
+    transform: translateY(0);
+}
+
+body.page-about .scroll-reveal-card {
+    opacity: 1;
+    transform: translateY(14px);
+    transition: transform 520ms cubic-bezier(.2, .7, .2, 1) var(--reveal-delay, 0ms);
+}
+
+body.page-about .scroll-reveal-card.is-visible {
+    transform: translateY(0);
+}
+
+html.about-smooth-scroll {
+    scroll-behavior: smooth;
+}
+
+@media (max-width: 1100px) {
+    body.page-about main .reference-about .values-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+    }
+
+    body.page-about main .reference-about .about-hero .hero-visual {
+        right: 32px;
+        width: 46%;
+    }
+
+    body.page-about main .reference-about .about-hero-content .hero-copy {
+        width: 48%;
+    }
+}
+
+@media (max-width: 767px) {
+    body.page-about main .reference-about .about-hero {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        padding-top: 0;
+    }
+
+    body.page-about main .reference-about .about-hero-content {
+        order: 1;
+        width: calc(100% - 40px);
+        min-height: 0;
+        padding-top: 58px;
+        padding-bottom: 22px;
+    }
+
+    body.page-about main .reference-about .about-hero-content .breadcrumb {
+        top: 0;
+        padding: 0;
+    }
+
+    body.page-about main .reference-about .about-hero-content .hero-copy {
+        width: 100%;
+    }
+
+    body.page-about main .reference-about .about-hero .hero-visual {
+        order: 2;
+        position: relative;
+        inset: auto;
+        width: calc(100% - 56px);
+        height: clamp(235px, 64vw, 330px);
+        margin: 0 36px 32px 20px;
+    }
+
+    body.page-about main .reference-about .about-hero .photo-about-review {
+        border-radius: 15px;
+    }
+
+    body.page-about main .reference-about .about-story-layout {
+        gap: 28px;
+    }
+
+    body.page-about main .reference-about .values-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+        margin-top: 24px;
+    }
+
+    body.page-about main .reference-about .values-grid > article {
+        padding: 20px 16px;
+    }
+
+    body.page-about main .reference-about .about-team-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    body.page-about main .reference-about .team-portrait-space {
+        aspect-ratio: 2;
+        height: auto;
+    }
+}
+
+@media (max-width: 520px) {
+    body.page-about main .reference-about .about-team-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html.about-smooth-scroll {
+        scroll-behavior: auto;
+    }
+
+    body.page-about .scroll-reveal,
+    body.page-about .scroll-reveal-card {
+        transform: none;
+        transition: none;
+    }
+
+    body.page-about .reference-about *,
+    body.page-about .reference-about *::before,
+    body.page-about .reference-about *::after,
+    body.page-about .reference-footer .footer-consultation * {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+    }
+}
