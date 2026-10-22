@@ -28,8 +28,6 @@ $hero = $servicePage['hero'];
         <figure class="photo service-hero-photo">
             <img
                 src="<?= htmlspecialchars($hero['image'], ENT_QUOTES, 'UTF-8') ?>"
-                srcset="<?= htmlspecialchars($hero['srcset'], ENT_QUOTES, 'UTF-8') ?>"
-                sizes="<?= htmlspecialchars($hero['sizes'], ENT_QUOTES, 'UTF-8') ?>"
                 width="1280"
                 height="853"
                 alt="<?= htmlspecialchars($hero['alt'], ENT_QUOTES, 'UTF-8') ?>"

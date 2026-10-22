@@ -8,3 +8,11 @@ ErrorDocument 404 /index.php
   RewriteRule ^ - [L]
   RewriteRule ^ index.php [QSA,L]
 </IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(?i:html?|php|css|js|mjs|json|webmanifest|svg|png|jpe?g|webp|avif|gif|ico|woff2?)$">
+    Header always set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+    Header always set Pragma "no-cache"
+    Header always set Expires "Thu, 01 Jan 1970 00:00:00 GMT"
+  </FilesMatch>
+</IfModule>

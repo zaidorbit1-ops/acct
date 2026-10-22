@@ -9,8 +9,6 @@ return [
             'button_label' => 'Discuss your business plans',
             'button_href' => '/contact?service=business-consultancy',
             'image' => '/assets/images/business-photo-1280.webp',
-            'srcset' => '/assets/images/business-photo-640.webp 640w, /assets/images/business-photo-1280.webp 1280w, /assets/images/business-photo-1600.webp 1600w',
-            'sizes' => '(max-width: 767px) calc(100vw - 40px), (max-width: 1440px) 48vw, 640px',
             'alt' => 'A laptop, open planner and pencil prepared for planning',
         ],
         'related' => [

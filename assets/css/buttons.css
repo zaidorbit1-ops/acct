@@ -10,6 +10,10 @@ body .button,
 body button.button,
 body input.button,
 body .site-header nav > a.button {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    transform: none;
     min-height: 50px;
     display: inline-flex;
     align-items: center;
@@ -17,38 +21,39 @@ body .site-header nav > a.button {
     gap: 12px;
     padding: 13px 22px;
     border: 1px solid var(--button-blue);
-    border-radius: 8px;
+    border-radius: 7px;
     background: linear-gradient(135deg, #1185cb 0%, var(--button-blue) 58%, #066db0 100%);
-    box-shadow: 0 4px 10px #0877bd24, inset 0 1px #ffffff2b;
+    box-shadow: 0 3px 8px #0877bd1c, inset 0 1px #ffffff2b;
     color: #fff;
     font-family: inherit;
     font-size: 15px;
-    font-weight: 750;
+    font-weight: 600;
+    letter-spacing: -.01em;
     line-height: 1.35;
     text-align: center;
     text-decoration: none;
     cursor: pointer;
-    transition: transform 200ms ease, background 200ms ease, border-color 200ms ease, box-shadow 200ms ease, color 200ms ease;
+    transition: background-size 680ms cubic-bezier(.18, .75, .24, 1), border-color 420ms ease, box-shadow 420ms ease, color 320ms ease;
 }
 
 body main .reference-home .button,
 body main .reference-about .button {
     min-height: 50px;
     padding: 13px 22px;
-    border-radius: 8px;
+    border-radius: 7px;
     font-family: inherit;
     font-size: 15px;
-    font-weight: 750;
+    font-weight: 600;
 }
 
 body .button:hover,
 body button.button:hover,
 body input.button:hover,
 body .site-header nav > a.button:hover {
-    transform: translateY(-2px);
+    transform: none;
     border-color: var(--button-blue-hover);
-    background: linear-gradient(135deg, #1592d8 0%, #0877bd 55%, #006dbb 100%);
-    box-shadow: 0 9px 20px #0877bd40, inset 0 1px #ffffff40;
+    background: linear-gradient(135deg, #1185cb 0%, var(--button-blue) 58%, #066db0 100%);
+    box-shadow: 0 7px 18px #0877bd30, inset 0 1px #ffffff38;
     color: #fff;
     text-decoration: none;
 }
@@ -57,8 +62,8 @@ body .button:active,
 body button.button:active,
 body input.button:active,
 body .site-header nav > a.button:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 5px #0877bd24;
+    transform: none;
+    box-shadow: 0 2px 5px #0877bd20;
 }
 
 body .button:focus-visible,
@@ -75,6 +80,12 @@ body .button-white {
     background: linear-gradient(135deg, #ffffff 0%, var(--button-pale) 100%);
     box-shadow: 0 3px 9px #0877bd12, inset 0 1px #fff;
     color: #075e9c;
+    transition: background-size 520ms cubic-bezier(.18, .75, .24, 1), border-color 420ms ease, box-shadow 420ms ease, color 180ms ease 140ms;
+}
+
+body .button-outline::before,
+body .button-white::before {
+    background: linear-gradient(115deg, #0877bd, #0769aa 70%, #034f88);
 }
 
 body main .reference-home .button-outline,
@@ -86,18 +97,17 @@ body main .reference-about .button-outline {
 
 body .button-outline:hover,
 body .button-white:hover {
-    transform: translateY(-2px);
+    transform: none;
     border-color: #79b5df;
-    background: linear-gradient(135deg, #f7fbff 0%, var(--button-pale-hover) 100%);
-    box-shadow: 0 8px 18px #0877bd20, inset 0 1px #fff;
-    color: #064f83;
+    background: linear-gradient(135deg, #ffffff 0%, var(--button-pale) 100%);
+    box-shadow: 0 7px 18px #0877bd24, inset 0 1px #ffffff38;
+    color: #fff;
 }
 
 body main .reference-home .button-outline:hover,
 body main .reference-about .button-outline:hover {
     border-color: #79b5df;
-    background: linear-gradient(135deg, #f7fbff 0%, var(--button-pale-hover) 100%);
-    color: #064f83;
+    color: #fff;
 }
 
 body .button-small,
@@ -111,6 +121,26 @@ body .site-header nav > a.button {
 body .site-header nav > a.button,
 body .site-header nav > a.button:hover {
     color: #fff;
+}
+
+body .site-header nav > a.header-cta {
+    overflow: hidden;
+    z-index: 1;
+    box-shadow: 0 0 0 0 #168bd122, 0 3px 8px #0877bd1c, inset 0 1px #ffffff2b;
+    animation: header-cta-glow 2.8s ease-in-out infinite;
+}
+
+body .site-header nav > a.header-cta:hover {
+    box-shadow: 0 0 0 6px #168bd126, 0 7px 22px #0877bd55, inset 0 1px #ffffff38;
+}
+
+@keyframes header-cta-glow {
+    0%, 100% {
+        box-shadow: 0 0 0 0 #168bd122, 0 3px 8px #0877bd1c, inset 0 1px #ffffff2b;
+    }
+    50% {
+        box-shadow: 0 0 0 7px #168bd12b, 0 5px 22px #0877bd55, inset 0 1px #ffffff42;
+    }
 }
 
 body .button:disabled,
@@ -128,8 +158,13 @@ body .button[aria-disabled="true"] {
     transition: transform 200ms ease;
 }
 
+body .button .direction-icon {
+    color: inherit;
+    stroke: currentColor;
+}
+
 .button:hover .direction-icon {
-    transform: translateX(4px);
+    transform: translateX(3px);
 }
 
 @media (max-width: 767px) {
@@ -145,5 +180,9 @@ body .button[aria-disabled="true"] {
     body .button,
     body .button .direction-icon {
         transition-duration: .01ms;
+    }
+
+    body .site-header nav > a.header-cta {
+        animation: none;
     }
 }

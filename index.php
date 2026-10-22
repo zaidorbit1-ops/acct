@@ -1,6 +1,10 @@
 <?php
 declare(strict_types=1);
 
+header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
+header('Pragma: no-cache');
+header('Expires: Thu, 01 Jan 1970 00:00:00 GMT');
+
 $pagesPath = __DIR__ . '/data/pages.json';
 $pagesJson = file_get_contents($pagesPath);
 if ($pagesJson === false) {
@@ -12,6 +16,14 @@ $requestPath = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
 $slug = trim(rawurldecode(is_string($requestPath) ? $requestPath : '/'), '/');
 $slug = $slug === '' ? 'home' : $slug;
 
+$legacyPageRedirects = [
+    'pension-claim-administration' => 'pension-claim-assistance-tax-relief',
+];
+if (isset($legacyPageRedirects[$slug])) {
+    header('Location: /' . $legacyPageRedirects[$slug], true, 301);
+    exit;
+}
+
 if (!preg_match('/^[a-z0-9-]+$/', $slug) || !isset($pages[$slug])) {
     http_response_code(404);
     $slug = '404';
@@ -21,7 +33,22 @@ if (!preg_match('/^[a-z0-9-]+$/', $slug) || !isset($pages[$slug])) {
 
 $page = $pages[$slug];
 $servicePageComponents = require __DIR__ . '/data/service-pages.php';
-$isServicePage = isset($servicePageComponents[$slug]) || strpos($page['main'], 'class="service-hero') !== false;
+$isServicePage = isset($servicePageComponents[$slug])
+    || strpos($page['main'], 'class="service-hero') !== false;
+$uppercaseFirstCharacter = static function (string $text): string {
+    $result = preg_replace_callback(
+        '/^(\s*(?:<[^>]+>\s*)*)([a-z])/i',
+        static fn(array $match): string => $match[1] . strtoupper($match[2]),
+        $text,
+        1
+    );
+
+    if ($result === null) {
+        throw new RuntimeException('Unable to capitalize a hero heading.');
+    }
+
+    return $result;
+};
 $redesignPageClasses = [
     'industries' => 'page-industries',
     'contact' => 'page-contact',
@@ -31,6 +58,94 @@ $pageBodyClass = $slug === 'home'
     ? 'page-home'
     : ($slug === 'about-us' ? 'page-about' : ($isServicePage ? 'page-service' : ($redesignPageClasses[$slug] ?? '')));
 $mainMarkup = $page['main'];
+
+if ($slug === 'about-us') {
+    $teamMarkup = preg_replace(
+        '/<section\b(?=[^>]*\bclass="[^"]*\babout-team\b)[^>]*>[\s\S]*?<\/section>/i',
+        '<!--ABOUT_TEAM_COMPONENT-->',
+        $mainMarkup,
+        1,
+        $teamSectionCount
+    );
+    if ($teamMarkup === null || $teamSectionCount !== 1) {
+        throw new RuntimeException('Unable to replace the About team section.');
+    }
+    $mainMarkup = $teamMarkup;
+    $mainMarkup = preg_replace(
+        '/<figure\b(?=[^>]*\bclass="[^"]*\boffice-concept\b[^"]*")[^>]*>[\s\S]*?<\/figure>/i',
+        '',
+        $mainMarkup,
+        1,
+        $officeConceptCount
+    );
+    if ($mainMarkup === null || $officeConceptCount !== 1) {
+        throw new RuntimeException('Unable to remove the About page office concept image.');
+    }
+}
+
+if ($slug === 'home') {
+    $serviceCardImages = [
+        '/accounting-services' => '/assets/images/home-card-1.png',
+        '/taxation-services' => '/assets/images/home-card-2.png',
+        '/business-consultancy' => '/assets/images/home-card-3.png',
+        '/company-formation' => '/assets/images/home-card-4.png',
+        '/payroll-services' => '/assets/images/home-card-5.png',
+        '/it-software-solutions' => '/assets/images/home-card-6.png',
+    ];
+
+    foreach ($serviceCardImages as $href => $imagePath) {
+        $cardOpeningTag = '<a class="service-card" href="' . $href . '">';
+        if (substr_count($mainMarkup, $cardOpeningTag) !== 1) {
+            throw new RuntimeException('Unable to add a homepage service card image for ' . $href . '.');
+        }
+        $serviceCardImage = '<figure class="service-card-image"><img src="' . $imagePath . '" width="1280" height="720" alt="" loading="lazy" decoding="async"></figure>';
+        $mainMarkup = str_replace($cardOpeningTag, $cardOpeningTag . $serviceCardImage, $mainMarkup);
+    }
+}
+
+if ($slug === 'home') {
+    $homeHeroMarkup = preg_replace(
+        '/<section\b[^>]*class="[^"]*\bhome-hero\b[^"]*"[^>]*>[\s\S]*?<\/section>/i',
+        '<!--HOME_HERO_COMPONENT-->',
+        $mainMarkup,
+        1,
+        $homeHeroCount
+    );
+    if ($homeHeroMarkup === null || $homeHeroCount !== 1) {
+        throw new RuntimeException('Unable to replace the homepage hero section.');
+    }
+    $mainMarkup = $homeHeroMarkup;
+}
+
+if ($slug === 'about-us') {
+    $aboutHeroMarkup = preg_replace(
+        '/<section\b[^>]*class="[^"]*\babout-hero\b[^"]*"[^>]*>[\s\S]*?<\/section>/i',
+        '<!--ABOUT_HERO_COMPONENT-->',
+        $mainMarkup,
+        1,
+        $aboutHeroCount
+    );
+    if ($aboutHeroMarkup === null || $aboutHeroCount !== 1) {
+        throw new RuntimeException('Unable to replace the About page hero section.');
+    }
+    $mainMarkup = $aboutHeroMarkup;
+}
+
+if ($slug === 'home' || $slug === 'about-us' || $isServicePage) {
+    $normalizedMarkup = preg_replace_callback(
+        '/<h1\b[^>]*>.*?<\/h1>/is',
+        static fn(array $match): string => $uppercaseFirstCharacter($match[0]),
+        $mainMarkup
+    );
+    if ($normalizedMarkup === null) {
+        throw new RuntimeException('Unable to capitalize a hero heading.');
+    }
+    $mainMarkup = $normalizedMarkup;
+
+    if (isset($servicePageComponents[$slug]['hero']['title'])) {
+        $servicePageComponents[$slug]['hero']['title'] = $uppercaseFirstCharacter($servicePageComponents[$slug]['hero']['title']);
+    }
+}
 
 $appendComponentClass = static function (string $markup, string $tagName, string $className): string {
     $tagPattern = '/<' . preg_quote($tagName, '/') . '\b[^>]*>/i';
@@ -139,6 +254,9 @@ if ($isServicePage) {
 require __DIR__ . '/includes/header.php';
 
 $componentFiles = [
+    '<!--HOME_HERO_COMPONENT-->' => __DIR__ . '/includes/components/home-hero.php',
+    '<!--ABOUT_HERO_COMPONENT-->' => __DIR__ . '/includes/components/about-hero.php',
+    '<!--ABOUT_TEAM_COMPONENT-->' => __DIR__ . '/includes/components/about-team.php',
     '<!--SERVICE_HERO_COMPONENT-->' => __DIR__ . '/includes/components/service-hero.php',
     '<!--RELATED_SERVICES_COMPONENT-->' => __DIR__ . '/includes/components/related-services.php',
     '<!--FAQ_COMPONENT-->' => __DIR__ . '/includes/components/faq.php',

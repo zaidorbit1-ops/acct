@@ -87,7 +87,137 @@ const isCareersPage = document.body.classList.contains("page-careers");
 const isRedesignPage = isIndustryPage || isContactPage || isCareersPage;
 const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
 
+const homeSlider = document.querySelector("[data-home-slider]");
+
+if (homeSlider) {
+  const slides = [...homeSlider.querySelectorAll("[data-slide]")];
+  const dots = [...homeSlider.querySelectorAll("[data-go-to]")];
+  const previousButton = homeSlider.querySelector("[data-previous]");
+  const nextButton = homeSlider.querySelector("[data-next]");
+  const playButton = homeSlider.querySelector("[data-toggle-play]");
+  const pauseIcon = playButton?.querySelector("[data-pause-icon]");
+  const playIcon = playButton?.querySelector("[data-play-icon]");
+  const slideCount = homeSlider.querySelector("[data-count]");
+  const progressBar = homeSlider.querySelector("[data-progress]");
+  const slideDelay = 7000;
+  let currentSlide = 0;
+  let timerId;
+  let isFocused = false;
+  let isPausedByUser = false;
+  let pointerStartX;
+
+  const updateSlide = (nextIndex) => {
+    currentSlide = (nextIndex + slides.length) % slides.length;
+
+    slides.forEach((slide, index) => {
+      const isActive = index === currentSlide;
+      slide.classList.toggle("is-active", isActive);
+      slide.setAttribute("aria-hidden", String(!isActive));
+      slide.inert = !isActive;
+    });
+
+    dots.forEach((dot, index) => {
+      const isActive = index === currentSlide;
+      dot.classList.toggle("is-active", isActive);
+      if (isActive) {
+        dot.setAttribute("aria-current", "true");
+      } else {
+        dot.removeAttribute("aria-current");
+      }
+    });
+
+    if (slideCount) {
+      slideCount.firstChild.textContent = `${String(currentSlide + 1).padStart(2, "0")} `;
+    }
+
+    if (progressBar && homeSlider.classList.contains("is-running")) {
+      progressBar.style.animation = "none";
+      void progressBar.offsetWidth;
+      progressBar.style.animation = "";
+    }
+
+    syncRotation();
+  };
+
+  const syncRotation = () => {
+    window.clearTimeout(timerId);
+    const shouldRotate = !motionPreference.matches
+      && !document.hidden
+      && !isFocused
+      && !isPausedByUser;
+
+    homeSlider.classList.toggle("is-running", shouldRotate);
+
+    if (playButton) {
+      playButton.setAttribute("aria-pressed", String(isPausedByUser));
+      playButton.setAttribute("aria-label", isPausedByUser ? "Play slide rotation" : "Pause slide rotation");
+    }
+    pauseIcon?.toggleAttribute("hidden", isPausedByUser);
+    playIcon?.toggleAttribute("hidden", !isPausedByUser);
+
+    if (shouldRotate) {
+      timerId = window.setTimeout(() => updateSlide(currentSlide + 1), slideDelay);
+    }
+  };
+
+  previousButton?.addEventListener("click", () => updateSlide(currentSlide - 1));
+  nextButton?.addEventListener("click", () => updateSlide(currentSlide + 1));
+  playButton?.addEventListener("click", () => {
+    isPausedByUser = !isPausedByUser;
+    syncRotation();
+  });
+
+  dots.forEach((dot) => {
+    dot.addEventListener("click", () => {
+      const index = Number(dot.getAttribute("data-go-to"));
+      if (Number.isInteger(index) && index >= 0 && index < slides.length) {
+        updateSlide(index);
+      }
+    });
+  });
+
+  homeSlider.addEventListener("focusin", () => {
+    isFocused = true;
+    syncRotation();
+  });
+  homeSlider.addEventListener("focusout", () => {
+    window.requestAnimationFrame(() => {
+      isFocused = homeSlider.contains(document.activeElement);
+      syncRotation();
+    });
+  });
+  homeSlider.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      updateSlide(currentSlide - 1);
+    } else if (event.key === "ArrowRight") {
+      event.preventDefault();
+      updateSlide(currentSlide + 1);
+    }
+  });
+  homeSlider.addEventListener("pointerdown", (event) => {
+    if (event.target instanceof Element && event.target.closest("a, button")) return;
+    pointerStartX = event.clientX;
+  });
+  homeSlider.addEventListener("pointerup", (event) => {
+    if (pointerStartX === undefined) return;
+    const distance = event.clientX - pointerStartX;
+    pointerStartX = undefined;
+    if (Math.abs(distance) >= 55) {
+      updateSlide(currentSlide + (distance < 0 ? 1 : -1));
+    }
+  });
+  homeSlider.addEventListener("pointercancel", () => {
+    pointerStartX = undefined;
+  });
+  document.addEventListener("visibilitychange", syncRotation);
+  motionPreference.addEventListener?.("change", syncRotation);
+
+  syncRotation();
+}
+
 if ((isHomePage || isAboutPage || isServicePage || isRedesignPage) && !motionPreference.matches) {
+  const usesDirectionalReveal = isHomePage || isAboutPage || isServicePage;
   const scrollClass = isHomePage ? "home-smooth-scroll" : isAboutPage ? "about-smooth-scroll" : isServicePage ? "service-smooth-scroll" : "redesign-smooth-scroll";
   document.documentElement.classList.add(scrollClass);
 
@@ -117,12 +247,18 @@ if ((isHomePage || isAboutPage || isServicePage || isRedesignPage) && !motionPre
       });
     }, { threshold: 0.08, rootMargin: "0px 0px -32px 0px" });
 
+    let sectionIndex = 0;
     revealItems.forEach((item) => {
       const isCard = cardSelector && item.matches(cardSelector);
       item.classList.add(isCard ? "scroll-reveal-card" : "scroll-reveal");
       if (isCard) {
         const siblings = [...item.parentElement.children];
-        item.style.setProperty("--reveal-delay", `${(siblings.indexOf(item) % 4) * 75}ms`);
+        item.style.setProperty("--reveal-delay", `${(siblings.indexOf(item) % 4) * (usesDirectionalReveal ? 140 : 75)}ms`);
+      } else if (usesDirectionalReveal) {
+        const directions = ["left", "right", "center"];
+        item.classList.add(`scroll-reveal--${directions[sectionIndex % directions.length]}`);
+        item.style.setProperty("--reveal-delay", `${(sectionIndex % directions.length) * 90}ms`);
+        sectionIndex += 1;
       }
       sectionObserver.observe(item);
 

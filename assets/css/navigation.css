@@ -2,8 +2,82 @@
     z-index: 100;
 }
 
+.utility .container {
+    align-items: center;
+    gap: 20px;
+}
+
+.utility-services {
+    margin: 0;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .01em;
+}
+
+.utility-contact {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 4px 8px;
+}
+
+.utility-item {
+    display: inline-flex;
+    min-height: 34px;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 9px;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    color: #e5eff8;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.35;
+    text-decoration: none;
+    transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease, transform 180ms ease;
+}
+
+.utility-item > svg {
+    width: 17px;
+    height: 17px;
+    flex: 0 0 17px;
+    color: #9ed4f5;
+    transition: color 180ms ease, transform 180ms ease;
+}
+
+.utility-item:hover,
+.utility-item:focus-visible {
+    border-color: #ffffff30;
+    background: #ffffff12;
+    color: #fff;
+    text-decoration: none;
+    transform: translateY(-1px);
+}
+
+.utility-item:hover > svg,
+.utility-item:focus-visible > svg {
+    color: #fff;
+    transform: scale(1.08);
+}
+
+.utility-item:focus-visible {
+    outline: 2px solid #9ed4f5;
+    outline-offset: 2px;
+}
+
+.utility-location {
+    color: #d6e1ed;
+}
+
 .site-header .header-inner {
     position: static;
+}
+
+.site-header .brand .brand-logo {
+    width: clamp(150px, 18vw, 240px);
+    height: auto;
 }
 
 .site-header nav {
@@ -65,14 +139,7 @@
     padding: 12px 22px;
     font-family: inherit;
     font-size: 15px;
-    font-weight: 750;
-    transition: background-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
-}
-
-.site-header nav > a.button:hover {
-    background: #075c9c;
-    box-shadow: 0 5px 14px #03244826;
-    transform: translateY(-1px);
+    font-weight: 600;
 }
 
 .site-header nav a:focus-visible,
@@ -278,6 +345,20 @@
 }
 
 @media (max-width: 1100px) {
+    .utility .container {
+        gap: 8px 16px;
+    }
+
+    .utility-contact {
+        gap: 2px 4px;
+    }
+
+    .utility-item {
+        min-height: 32px;
+        padding-inline: 7px;
+        font-size: 12px;
+    }
+
     .site-header nav {
         align-items: stretch;
         gap: 0;
@@ -344,6 +425,51 @@
 }
 
 @media (max-width: 767px) {
+    .site-header .brand .brand-logo {
+        width: min(52vw, 190px);
+    }
+
+    .utility {
+        padding: 9px 0;
+    }
+
+    .utility .container {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 7px;
+    }
+
+    .utility-services {
+        text-align: center;
+        font-size: 11px;
+        line-height: 1.4;
+    }
+
+    .utility-contact {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, max-content));
+        justify-content: center;
+        gap: 3px 5px;
+    }
+
+    .utility-item {
+        min-height: 30px;
+        gap: 6px;
+        padding: 4px 7px;
+        font-size: 11px;
+    }
+
+    .utility-item > svg {
+        width: 15px;
+        height: 15px;
+        flex-basis: 15px;
+    }
+
+    .utility-location {
+        grid-column: 1 / -1;
+        justify-self: center;
+    }
+
     .site-header .mega-groups {
         grid-template-columns: 1fr;
         gap: 16px;
@@ -360,6 +486,16 @@
     .site-header .mega-groups a {
         min-height: 44px;
         font-size: 15px;
+    }
+}
+
+@media (max-width: 360px) {
+    .utility-contact {
+        grid-template-columns: minmax(0, max-content);
+    }
+
+    .utility-location {
+        grid-column: auto;
     }
 }
 
