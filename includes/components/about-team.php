@@ -3,7 +3,7 @@ $teamProfiles = [
     [
         'name' => 'Amir Mirza',
         'role' => 'Managing Director & CEO',
-        'image' => '/assets/images/amir-mirza.webp',
+        'image' => '/assets/images/Amir.png',
         'alt' => 'Amir Mirza, Managing Director and CEO',
         'credentials' => 'ACA (Ireland) | ICAEW | CPA',
         'biography' => 'Amir has over 15 years of professional experience in accounting, taxation and business consultancy, providing practical financial guidance and tailored solutions to individuals, SMEs and corporate clients.',
@@ -15,45 +15,59 @@ $teamProfiles = [
         ],
     ],
     [
-        'name' => 'Dr. Waqar Khan',
-        'role' => 'Healthcare & Business Advisor',
-        'image' => '/assets/images/waqar-khan.webp',
-        'alt' => 'Dr. Waqar Khan',
-        'credentials' => 'Healthcare | Business Advisory',
-        'biography' => 'Waqar supports healthcare professionals and medical businesses with practical business guidance, planning and operational insight.',
+        'name' => 'Hammad Rehman',
+        'role' => 'Payroll & Personal Income Tax Compliance Specialist',
+        'image' => '/assets/images/hammad.jpg',
+        'alt' => 'Hammad Rehman, Payroll and Personal Income Tax Compliance Specialist',
+        'credentials' => 'Payroll | PAYE | Personal Tax',
+        'biography' => 'Hammad specialises in payroll administration, PAYE compliance, personal income tax returns and regulatory reporting. He supports clients in meeting their Irish Revenue obligations accurately and efficiently, ensuring timely submissions and compliance with applicable tax regulations.',
         'highlights' => [
-            ['title' => 'Healthcare', 'description' => 'Sector-focused guidance'],
-            ['title' => 'Planning', 'description' => 'Practical business planning'],
-            ['title' => 'Advisory', 'description' => 'Clear, tailored support'],
-            ['title' => 'Experience', 'description' => 'Healthcare and business expertise'],
+            ['title' => 'Payroll', 'description' => 'Payroll Administration'],
+            ['title' => 'PAYE', 'description' => 'PAYE Compliance'],
+            ['title' => 'Personal Tax', 'description' => 'Personal Income Tax Returns'],
+            ['title' => 'Reporting', 'description' => 'Regulatory Reporting'],
         ],
     ],
     [
-        'name' => 'Dr. Tahir Yasin Khan',
-        'role' => 'Business Growth Advisor',
-        'image' => '/assets/images/tahir-yasin-khan.webp',
-        'alt' => 'Dr. Tahir Yasin Khan',
-        'credentials' => 'Business Advisory | Growth',
-        'biography' => 'Tahir works with business owners to assess opportunities, strengthen commercial plans and take practical steps towards sustainable growth.',
+        'name' => 'Jawwad Rehman',
+        'role' => 'Payroll Compliance Supervisor',
+        'image' => '/assets/images/jawwad.jpg',
+        'alt' => 'Jawwad Rehman, Payroll Compliance Supervisor',
+        'credentials' => 'Payroll | PAYE | Processing',
+        'biography' => 'Jawwad oversees payroll processing, ensuring accurate calculations, timely submissions and full compliance with Revenue requirements for businesses.',
         'highlights' => [
-            ['title' => 'Strategy', 'description' => 'Commercial planning'],
-            ['title' => 'Growth', 'description' => 'Opportunity assessment'],
-            ['title' => 'Partnership', 'description' => 'Long-term business support'],
-            ['title' => 'Experience', 'description' => 'Business growth advisory'],
+            ['title' => 'Payroll', 'description' => 'Payroll Administration'],
+            ['title' => 'PAYE', 'description' => 'PAYE Compliance'],
+            ['title' => 'Processing', 'description' => 'Payroll Processing'],
+            ['title' => 'Reporting', 'description' => 'Regulatory Reporting'],
         ],
     ],
     [
-        'name' => 'Dr. Sohaib Adil',
-        'role' => 'Technology & Digital Solutions Advisor',
-        'image' => '/assets/images/sohaib-adil.webp',
-        'alt' => 'Dr. Sohaib Adil',
-        'credentials' => 'IT Solutions | Digital Transformation',
-        'biography' => 'Sohaib helps organisations explore technology solutions, digital transformation and automation that support the way they work.',
+        'name' => 'Faiz Ahmed',
+        'role' => 'Company Formation & Corporate Compliance Specialist',
+        'image' => '/assets/images/Faiz.jpg',
+        'alt' => 'Faiz Ahmed, Company Formation and Corporate Compliance Specialist',
+        'credentials' => 'Company Formation | CRO | Compliance',
+        'biography' => 'Faiz Ahmed assists clients with company incorporation, CRO filings, annual returns, statutory documentation and ongoing corporate compliance, ensuring businesses meet their regulatory obligations accurately and on time.',
         'highlights' => [
-            ['title' => 'Technology', 'description' => 'Practical IT solutions'],
-            ['title' => 'Digital', 'description' => 'Transformation support'],
-            ['title' => 'Automation', 'description' => 'Smarter workflows'],
-            ['title' => 'Experience', 'description' => 'Technology solutions expertise'],
+            ['title' => 'Formation', 'description' => 'Company Formation'],
+            ['title' => 'CRO Filings', 'description' => 'CRO Filings & Annual Returns'],
+            ['title' => 'Secretarial', 'description' => 'Company Secretarial Support'],
+            ['title' => 'Compliance', 'description' => 'Corporate Compliance'],
+        ],
+    ],
+    [
+        'name' => 'Waqar Ahmed',
+        'role' => 'Bookkeeping Specialist',
+        'image' => '/assets/images/Waqar.png',
+        'alt' => 'Waqar Ahmed, Bookkeeping Specialist',
+        'credentials' => 'Bookkeeping | Reconciliations | Reporting',
+        'biography' => 'Waqar Ahmed manages day-to-day bookkeeping, ensuring accurate financial records and timely reconciliation to support our clients with reliable and up-to-date information for their business decisions.',
+        'highlights' => [
+            ['title' => 'Bookkeeping', 'description' => 'Daily Bookkeeping'],
+            ['title' => 'Reconciliations', 'description' => 'Bank Reconciliations'],
+            ['title' => 'Records', 'description' => 'Financial Record Management'],
+            ['title' => 'Reporting', 'description' => 'Management Reporting Support'],
         ],
     ],
 ];
@@ -72,6 +86,18 @@ $teamHighlightIcons = [
     'Digital' => '<path d="m12 3 1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z M19 16l1 2 2 1-2 1-1 2-1-2-2-1 2-1z"></path>',
     'Automation' => '<path d="M12 3v3 M12 18v3 M3 12h3 M18 12h3 M5.6 5.6l2.1 2.1 M16.3 16.3l2.1 2.1 M18.4 5.6l-2.1 2.1 M7.7 16.3l-2.1 2.1 M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"></path>',
     'Experience' => '<path d="M12 8v4l3 2 M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"></path>',
+    'Payroll' => '<path d="M4 5h16v15H4z M8 9h8 M8 13h8 M8 17h4"></path>',
+    'PAYE' => '<path d="M6 3h9l3 3v15H6z M14 3v5h4 M9 12h6 M9 16h6"></path>',
+    'Personal Tax' => '<path d="M6 3h9l3 3v15H6z M14 3v5h4 M9 12h6 M9 16h4"></path>',
+    'Reporting' => '<path d="M3 21h18 M5 17v-5h4v5 M10 17V8h4v9 M15 17V3h4v14"></path>',
+    'Processing' => '<path d="M4 5h16v15H4z M8 9h8 M8 13h3 M15 13h1 M8 17h3 M15 17h1"></path>',
+    'Formation' => '<path d="M5 3h14v18H5z M8 7h8 M8 11h8 M8 15h5"></path>',
+    'CRO Filings' => '<path d="M6 3h9l3 3v15H6z M14 3v5h4 M9 12h6 M9 16h6"></path>',
+    'Secretarial' => '<path d="M10 7a3 3 0 1 1-6 0 3 3 0 0 1 6 0 M20 7a3 3 0 1 1-6 0 3 3 0 0 1 6 0 M2 21v-4a5 5 0 0 1 10 0v4 M12 21v-4a5 5 0 0 1 10 0v4"></path>',
+    'Compliance' => '<path d="m12 3 8 3v5c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z M8 12l3 3 5-6"></path>',
+    'Bookkeeping' => '<path d="M6 3h12v18H6z M9 7h6 M9 11h6 M9 15h2 M14 15h2 M9 18h2 M14 18h2"></path>',
+    'Reconciliations' => '<path d="M4 7h13l-3-3 M20 17H7l3 3 M17 7l3 3-3 3 M7 17l-3-3 3-3"></path>',
+    'Records' => '<path d="M6 3h9l3 3v15H6z M14 3v5h4 M9 12h6 M9 16h6"></path>',
 ];
 ?>
 <section class="section about-team" aria-labelledby="team-title">
@@ -82,13 +108,17 @@ $teamHighlightIcons = [
         <ul class="about-team-grid team-grid">
             <?php foreach ($teamProfiles as $profile): ?>
                 <li class="about-team-card team-card">
-                    <figure class="team-portrait-space">
-                        <img src="<?= htmlspecialchars($profile['image'], ENT_QUOTES, 'UTF-8') ?>" width="1280" height="853" alt="<?= htmlspecialchars($profile['alt'], ENT_QUOTES, 'UTF-8') ?>" loading="lazy" decoding="async">
-                    </figure>
+                    <div class="team-card-header">
+                        <figure class="team-portrait-space">
+                            <img src="<?= htmlspecialchars($profile['image'], ENT_QUOTES, 'UTF-8') ?>" width="786" height="1024" alt="<?= htmlspecialchars($profile['alt'], ENT_QUOTES, 'UTF-8') ?>" loading="<?= $profile['name'] === 'Amir Mirza' ? 'eager' : 'lazy' ?>" decoding="async">
+                        </figure>
+                        <div class="team-card-heading">
+                            <h3><?= htmlspecialchars($profile['name'], ENT_QUOTES, 'UTF-8') ?></h3>
+                            <p class="team-role"><?= htmlspecialchars($profile['role'], ENT_QUOTES, 'UTF-8') ?></p>
+                            <p class="team-credentials"><?= htmlspecialchars($profile['credentials'], ENT_QUOTES, 'UTF-8') ?></p>
+                        </div>
+                    </div>
                     <div class="team-details">
-                        <h3><?= htmlspecialchars($profile['name'], ENT_QUOTES, 'UTF-8') ?></h3>
-                        <p class="team-role"><?= htmlspecialchars($profile['role'], ENT_QUOTES, 'UTF-8') ?></p>
-                        <p class="team-credentials"><?= htmlspecialchars($profile['credentials'], ENT_QUOTES, 'UTF-8') ?></p>
                         <p class="team-biography"><?= htmlspecialchars($profile['biography'], ENT_QUOTES, 'UTF-8') ?></p>
                         <ul class="team-highlights">
                             <?php foreach ($profile['highlights'] as $highlight): ?>

@@ -83,6 +83,34 @@ if ($slug === 'about-us') {
     }
 }
 
+if ($slug === 'accounting-services') {
+    $bookkeepingMarkup = preg_replace(
+        '/<ul\b(?=[^>]*\bclass="[^"]*\baccounting-details\b)[^>]*>[\s\S]*?<\/ul>/i',
+        '<!--BOOKKEEPING_CARDS_COMPONENT-->',
+        $mainMarkup,
+        1,
+        $bookkeepingSectionCount
+    );
+    if ($bookkeepingMarkup === null || $bookkeepingSectionCount !== 1) {
+        throw new RuntimeException('Unable to replace the bookkeeping service cards.');
+    }
+    $mainMarkup = $bookkeepingMarkup;
+}
+
+if ($slug === 'it-software-solutions') {
+    $itCardsMarkup = preg_replace(
+        '/<ul\b(?=[^>]*\bclass="[^"]*\bservice-detail-list\b)[^>]*>[\s\S]*?<\/ul>/i',
+        '<!--IT_SERVICE_CARDS_COMPONENT-->',
+        $mainMarkup,
+        1,
+        $itCardsSectionCount
+    );
+    if ($itCardsMarkup === null || $itCardsSectionCount !== 1) {
+        throw new RuntimeException('Unable to replace the IT service cards.');
+    }
+    $mainMarkup = $itCardsMarkup;
+}
+
 if ($slug === 'home') {
     $serviceCardImages = [
         '/accounting-services' => '/assets/images/home-card-1.png',
@@ -258,6 +286,8 @@ $componentFiles = [
     '<!--ABOUT_HERO_COMPONENT-->' => __DIR__ . '/includes/components/about-hero.php',
     '<!--ABOUT_TEAM_COMPONENT-->' => __DIR__ . '/includes/components/about-team.php',
     '<!--SERVICE_HERO_COMPONENT-->' => __DIR__ . '/includes/components/service-hero.php',
+    '<!--BOOKKEEPING_CARDS_COMPONENT-->' => __DIR__ . '/includes/components/bookkeeping-cards.php',
+    '<!--IT_SERVICE_CARDS_COMPONENT-->' => __DIR__ . '/includes/components/it-service-cards.php',
     '<!--RELATED_SERVICES_COMPONENT-->' => __DIR__ . '/includes/components/related-services.php',
     '<!--FAQ_COMPONENT-->' => __DIR__ . '/includes/components/faq.php',
 ];

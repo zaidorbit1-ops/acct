@@ -248,6 +248,7 @@ body.page-service .service-help .service-detail-list {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 16px;
+    min-width: 0;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -267,6 +268,57 @@ body.page-service .service-help .detail-item {
     background: linear-gradient(145deg, #fff, #f7fbfe);
     box-shadow: 0 4px 14px #082b5009;
     transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+}
+
+body.page-service .service-help :is(.accounting-details, .it-support-details) .detail-item {
+    min-width: 0;
+    gap: 0;
+    padding: 0;
+}
+
+body.page-service .service-help .detail-card-image {
+    display: block;
+    width: 100%;
+    height: 180px;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    object-position: center;
+    background: #e8f3fb;
+}
+
+body.page-service .service-help .it-support-details .detail-card-image {
+    grid-column: 1 / -1;
+    width: 100%;
+    height: 150px;
+    object-fit: contain;
+    background: linear-gradient(145deg, #f1f8fd, #e8f3fb);
+}
+
+body.page-service .service-help :is(.accounting-details, .it-support-details) .detail-symbol {
+    flex: 0 0 48px;
+    margin: 18px 22px 0;
+}
+
+body.page-service .service-help :is(.accounting-details, .it-support-details) .detail-item > div {
+    padding: 14px 22px 22px;
+}
+
+body.page-service .service-help .it-support-details .detail-item {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+body.page-service .service-help .it-support-details .detail-symbol {
+    width: 44px;
+    height: 44px;
+    flex-basis: 44px;
+    margin: 16px 18px 0;
+}
+
+body.page-service .service-help .it-support-details .detail-item > div {
+    min-width: 0;
+    padding: 12px 18px 18px;
 }
 
 body.page-service .service-help .detail-item::before {
@@ -651,11 +703,11 @@ body.page-service .scroll-reveal-card {
 }
 
 body.page-service .scroll-reveal--left {
-    transform: translate3d(-56px, 20px, 0);
+    transform: translate3d(0, 20px, 0);
 }
 
 body.page-service .scroll-reveal--right {
-    transform: translate3d(56px, 20px, 0);
+    transform: translate3d(0, 20px, 0);
 }
 
 body.page-service .scroll-reveal--center {
@@ -691,9 +743,17 @@ body.page-service main .scroll-reveal-card.scroll-reveal-card {
         grid-template-columns: 1fr;
     }
 
+    body.page-service .service-help .it-support-details {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
     body.page-service .service-help .detail-item {
         min-height: 0;
         flex-direction: row;
+    }
+
+    body.page-service .service-help :is(.accounting-details, .it-support-details) .detail-item {
+        flex-direction: column;
     }
 }
 
@@ -737,6 +797,10 @@ body.page-service main .scroll-reveal-card.scroll-reveal-card {
     body.page-service .service-help .detail-intro > .eyebrow,
     body.page-service .service-help .detail-intro > h2 {
         grid-column: auto;
+    }
+
+    body.page-service .service-help .it-support-details {
+        grid-template-columns: 1fr;
     }
 
     body.page-service .service-help .detail-item {
