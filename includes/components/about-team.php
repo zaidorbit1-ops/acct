@@ -80,6 +80,22 @@ $teamProfiles = [
             ['title' => 'Reporting', 'description' => 'Management Reporting Support'],
         ],
     ],
+    [
+        'name' => 'Salman Khan',
+        'role' => 'IT Solutions Specialist',
+        'image' => '/assets/images/Salman.png',
+        'imageWidth' => 1209,
+        'imageHeight' => 1300,
+        'alt' => 'Salman Khan, IT Solutions Specialist',
+        'credentials' => 'IT Support & Technology Solutions',
+        'biography' => 'Salman Khan manages IT support, system setup and technology solutions, helping businesses work efficiently and securely with reliable and up-to-date IT infrastructure.',
+        'highlights' => [
+            ['title' => 'IT Support & Maintenance', 'description' => ''],
+            ['title' => 'Cloud Solutions & Setup', 'description' => ''],
+            ['title' => 'System Administration', 'description' => ''],
+            ['title' => 'Security & Data Protection', 'description' => ''],
+        ],
+    ],
 ];
 $teamHighlightIcons = [
     'ACA' => '<path d="m3 9 9-5 9 5-9 5z M7 11v5c3 2 7 2 10 0v-5 M21 9v6"></path>',
@@ -93,6 +109,10 @@ $teamHighlightIcons = [
     'Growth' => '<path d="m4 17 5-5 4 3 7-8 M14 7h6v6"></path>',
     'Partnership' => '<path d="m8 12 3 3a2 2 0 0 0 3-1l2-2 M8 12l2-2a2 2 0 0 1 3 0l1 1 M4 9l4-4 4 2-4 4-4 4-3-3z M20 9l-4-4-4 2 4 4 4 4 3-3z"></path>',
     'Technology' => '<rect x="3" y="4" width="18" height="13" rx="1"></rect><path d="M8 21h8 M12 17v4"></path>',
+    'IT Support & Maintenance' => '<rect x="3" y="4" width="18" height="13" rx="1"></rect><path d="M8 21h8 M12 17v4 M7 9h10"></path>',
+    'Cloud Solutions & Setup' => '<path d="M7 18a4 4 0 0 1-.5-8A6 6 0 0 1 18 8a5 5 0 0 1 0 10z M12 11v6 M9 14l3-3 3 3"></path>',
+    'System Administration' => '<circle cx="12" cy="12" r="3"></circle><path d="m19.4 15 .1.1 1.4 1.1-1.4 2.4-1.7-.7a8 8 0 0 1-1.7 1l-.3 1.8h-2.8l-.3-1.8a8 8 0 0 1-1.7-1l-1.7.7-1.4-2.4 1.4-1.1a7 7 0 0 1 0-2l-1.4-1.1 1.4-2.4 1.7.7a8 8 0 0 1 1.7-1l.3-1.8h2.8l.3 1.8a8 8 0 0 1 1.7 1l1.7-.7 1.4 2.4-1.4 1.1a7 7 0 0 1 0 1.9z"></path>',
+    'Security & Data Protection' => '<path d="m12 3 8 3v5c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z M8 12l3 3 5-6"></path>',
     'Digital' => '<path d="m12 3 1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z M19 16l1 2 2 1-2 1-1 2-1-2-2-1 2-1z"></path>',
     'Automation' => '<path d="M12 3v3 M12 18v3 M3 12h3 M18 12h3 M5.6 5.6l2.1 2.1 M16.3 16.3l2.1 2.1 M18.4 5.6l-2.1 2.1 M7.7 16.3l-2.1 2.1 M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"></path>',
     'Experience' => '<path d="M12 8v4l3 2 M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"></path>',
@@ -143,7 +163,9 @@ $teamHighlightIcons = [
                                 <li>
                                     <span class="team-highlight-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><?= $teamHighlightIcons[$highlight['title']] ?></svg></span>
                                     <strong><?= htmlspecialchars($highlight['title'], ENT_QUOTES, 'UTF-8') ?></strong>
-                                    <span><?= htmlspecialchars($highlight['description'], ENT_QUOTES, 'UTF-8') ?></span>
+                                    <?php if ($highlight['description'] !== ''): ?>
+                                        <span><?= htmlspecialchars($highlight['description'], ENT_QUOTES, 'UTF-8') ?></span>
+                                    <?php endif; ?>
                                 </li>
                             <?php endforeach; ?>
                         </ul>
