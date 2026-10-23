@@ -702,6 +702,59 @@ body.page-careers .career-panel .button:focus-visible::after {
     transform: translateX(3px);
 }
 
+body.page-careers .career-job-list {
+    display: grid;
+    width: 100%;
+    gap: 14px;
+}
+
+body.page-careers .career-job {
+    width: 100%;
+    padding: 17px;
+    border: 1px solid #d5e5f1;
+    border-radius: 8px;
+    background: #fff;
+}
+
+body.page-careers .career-job h3 {
+    margin: 0 0 6px;
+    font-size: 19px;
+}
+
+body.page-careers .career-job .career-job-meta {
+    margin: 0 0 10px;
+    color: #60758a;
+    font-size: 12px;
+    font-weight: 750;
+}
+
+body.page-careers .career-job p {
+    margin: 0 0 12px;
+}
+
+body.page-careers .career-job details {
+    margin-top: 10px;
+    border-top: 1px solid #e4edf4;
+    font-size: 13px;
+}
+
+body.page-careers .career-job summary {
+    padding: 10px 0 4px;
+    color: #164b76;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+body.page-careers .career-job details ul {
+    padding-left: 20px;
+    color: #52677c;
+    line-height: 1.65;
+}
+
+body.page-careers .career-job .button {
+    margin-top: 14px;
+}
+
 @media (max-width: 1000px) {
     body.page-industries main > section.section > .container {
         grid-template-columns: repeat(2, minmax(0, 1fr));

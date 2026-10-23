@@ -1,6 +1,10 @@
 DirectoryIndex index.php
 ErrorDocument 404 /index.php
 
+<FilesMatch "^\.env(?:\..*)?$">
+  Require all denied
+</FilesMatch>
+
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteCond %{REQUEST_FILENAME} -f [OR]

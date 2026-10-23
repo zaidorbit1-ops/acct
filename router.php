@@ -1,6 +1,11 @@
 <?php
 $requestPath = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
 $requestPath = is_string($requestPath) ? rawurldecode($requestPath) : '/';
+$requestedName = basename($requestPath);
+if ($requestedName === '.env' || strpos($requestedName, '.env.') === 0) {
+    http_response_code(404);
+    exit;
+}
 $requestedFile = __DIR__ . DIRECTORY_SEPARATOR . ltrim(str_replace('/', DIRECTORY_SEPARATOR, $requestPath), DIRECTORY_SEPARATOR);
 $realRoot = realpath(__DIR__);
 $realFile = realpath($requestedFile);

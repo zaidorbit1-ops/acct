@@ -5,6 +5,9 @@ header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
 header('Pragma: no-cache');
 header('Expires: Thu, 01 Jan 1970 00:00:00 GMT');
 
+require __DIR__ . '/includes/backend.php';
+backend_dispatch();
+
 $pagesPath = __DIR__ . '/data/pages.json';
 $pagesJson = file_get_contents($pagesPath);
 if ($pagesJson === false) {
@@ -58,6 +61,40 @@ $pageBodyClass = $slug === 'home'
     ? 'page-home'
     : ($slug === 'about-us' ? 'page-about' : ($isServicePage ? 'page-service' : ($redesignPageClasses[$slug] ?? '')));
 $mainMarkup = $page['main'];
+
+if ($slug === 'careers') {
+    try {
+        $mainMarkup = backend_public_jobs_markup($mainMarkup);
+    } catch (Throwable $exception) {
+        error_log('Public career page failed to load vacancies: ' . $exception->getMessage());
+        http_response_code(503);
+        $mainMarkup = backend_unavailable_jobs_markup($mainMarkup);
+    }
+}
+if ($slug === 'contact') {
+    $enabledFormMarkup = str_replace('data-enabled="false"', 'data-enabled="true"', $mainMarkup, $enabledFormCount);
+    if ($enabledFormCount !== 1) {
+        throw new RuntimeException('Unable to enable the contact form.');
+    }
+    $mainMarkup = str_replace(
+        'pattern="[+0-9\s().\-]+"',
+        'pattern="(?:\+|[0-9]|\s|\(|\)|\.|-)+"',
+        $enabledFormMarkup,
+        $phonePatternCount
+    );
+    if ($phonePatternCount !== 1) {
+        throw new RuntimeException('Unable to prepare the contact telephone field.');
+    }
+    $mainMarkup = str_replace(
+        'A brief overview is enough. We will explain how to share any records securely.',
+        'A brief overview of at least 10 characters is enough. We will explain how to share any records securely.',
+        $mainMarkup,
+        $messageHintCount
+    );
+    if ($messageHintCount !== 1) {
+        throw new RuntimeException('Unable to update the contact message guidance.');
+    }
+}
 
 if ($slug === 'about-us') {
     $teamMarkup = preg_replace(

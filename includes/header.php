@@ -136,7 +136,10 @@ if ($navStart !== false && $navEnd !== false && $slug !== '404') {
 
     if (strpos($nav, 'class="mega-groups"') !== false) {
         $megaStart = strpos($nav, 'class="mega-groups"');
-        $megaLinks = substr($nav, $megaStart);
+        $megaEnd = strpos($nav, '</details>', $megaStart);
+        $megaLinks = $megaEnd === false
+            ? substr($nav, $megaStart)
+            : substr($nav, $megaStart, $megaEnd - $megaStart);
         if (preg_match($currentLinkPattern, $megaLinks)) {
             $nav = preg_replace('~<details class="services-menu"~', '<details class="services-menu has-current-page"', $nav, 1);
         }
