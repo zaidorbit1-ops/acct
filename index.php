@@ -304,7 +304,7 @@ if ($isServicePage) {
     <link rel="stylesheet" href="/assets/css/buttons.css">
     <link rel="stylesheet" href="/assets/css/home.css">
     <?php if ($slug === 'about-us'): ?>
-        <link rel="stylesheet" href="/assets/css/about.css">
+        <link rel="stylesheet" href="/assets/css/about.css?v=<?= filemtime(__DIR__ . '/assets/css/about.css') ?>">
     <?php endif; ?>
     <?php if ($isServicePage): ?>
         <link rel="stylesheet" href="/assets/css/service.css">

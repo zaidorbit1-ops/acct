@@ -4,6 +4,8 @@ $teamProfiles = [
         'name' => 'Amir Mirza',
         'role' => 'Managing Director & CEO',
         'image' => '/assets/images/Amir.png',
+        'imageWidth' => 1086,
+        'imageHeight' => 1448,
         'alt' => 'Amir Mirza, Managing Director and CEO',
         'credentials' => 'ACA (Ireland) | ICAEW | CPA',
         'biography' => 'Amir has over 15 years of professional experience in accounting, taxation and business consultancy, providing practical financial guidance and tailored solutions to individuals, SMEs and corporate clients.',
@@ -15,10 +17,12 @@ $teamProfiles = [
         ],
     ],
     [
-        'name' => 'Hammad Rehman',
+        'name' => 'Hammad Sheikh',
         'role' => 'Payroll & Personal Income Tax Compliance Specialist',
-        'image' => '/assets/images/hammad.jpg',
-        'alt' => 'Hammad Rehman, Payroll and Personal Income Tax Compliance Specialist',
+        'image' => '/assets/images/Hammad.jpeg',
+        'imageWidth' => 900,
+        'imageHeight' => 1600,
+        'alt' => 'Hammad Sheikh, Payroll and Personal Income Tax Compliance Specialist',
         'credentials' => 'Payroll | PAYE | Personal Tax',
         'biography' => 'Hammad specialises in payroll administration, PAYE compliance, personal income tax returns and regulatory reporting. He supports clients in meeting their Irish Revenue obligations accurately and efficiently, ensuring timely submissions and compliance with applicable tax regulations.',
         'highlights' => [
@@ -30,22 +34,26 @@ $teamProfiles = [
     ],
     [
         'name' => 'Jawwad Rehman',
-        'role' => 'Payroll Compliance Supervisor',
+        'role' => 'Payroll & Revenue Compliance Specialist',
         'image' => '/assets/images/jawwad.jpg',
-        'alt' => 'Jawwad Rehman, Payroll Compliance Supervisor',
-        'credentials' => 'Payroll | PAYE | Processing',
-        'biography' => 'Jawwad oversees payroll processing, ensuring accurate calculations, timely submissions and full compliance with Revenue requirements for businesses.',
+        'imageWidth' => 1080,
+        'imageHeight' => 1307,
+        'alt' => 'Jawwad Rehman, Payroll and Revenue Compliance Specialist',
+        'credentials' => 'Payroll | PAYE | Revenue Compliance',
+        'biography' => 'Jawwad specialises in payroll management, PAYE administration and Revenue compliance, ensuring accurate processing, timely statutory submissions and adherence to Irish Revenue requirements.',
         'highlights' => [
-            ['title' => 'Payroll', 'description' => 'Payroll Administration'],
-            ['title' => 'PAYE', 'description' => 'PAYE Compliance'],
-            ['title' => 'Processing', 'description' => 'Payroll Processing'],
-            ['title' => 'Reporting', 'description' => 'Regulatory Reporting'],
+            ['title' => 'Payroll', 'description' => 'Payroll Management'],
+            ['title' => 'PAYE', 'description' => 'PAYE & PRSI Compliance'],
+            ['title' => 'Revenue', 'description' => 'Revenue Compliance'],
+            ['title' => 'Reporting', 'description' => 'Statutory Submissions'],
         ],
     ],
     [
         'name' => 'Faiz Ahmed',
         'role' => 'Company Formation & Corporate Compliance Specialist',
         'image' => '/assets/images/Faiz.jpg',
+        'imageWidth' => 1086,
+        'imageHeight' => 1448,
         'alt' => 'Faiz Ahmed, Company Formation and Corporate Compliance Specialist',
         'credentials' => 'Company Formation | CRO | Compliance',
         'biography' => 'Faiz Ahmed assists clients with company incorporation, CRO filings, annual returns, statutory documentation and ongoing corporate compliance, ensuring businesses meet their regulatory obligations accurately and on time.',
@@ -60,6 +68,8 @@ $teamProfiles = [
         'name' => 'Waqar Ahmed',
         'role' => 'Bookkeeping Specialist',
         'image' => '/assets/images/Waqar.png',
+        'imageWidth' => 1085,
+        'imageHeight' => 1450,
         'alt' => 'Waqar Ahmed, Bookkeeping Specialist',
         'credentials' => 'Bookkeeping | Reconciliations | Reporting',
         'biography' => 'Waqar Ahmed manages day-to-day bookkeeping, ensuring accurate financial records and timely reconciliation to support our clients with reliable and up-to-date information for their business decisions.',
@@ -88,6 +98,7 @@ $teamHighlightIcons = [
     'Experience' => '<path d="M12 8v4l3 2 M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"></path>',
     'Payroll' => '<path d="M4 5h16v15H4z M8 9h8 M8 13h8 M8 17h4"></path>',
     'PAYE' => '<path d="M6 3h9l3 3v15H6z M14 3v5h4 M9 12h6 M9 16h6"></path>',
+    'Revenue' => '<path d="M3 21h18 M5 21V7l7-4 7 4v14 M9 21v-6h6v6 M8 10h.01 M16 10h.01 M8 13h.01 M16 13h.01"></path>',
     'Personal Tax' => '<path d="M6 3h9l3 3v15H6z M14 3v5h4 M9 12h6 M9 16h4"></path>',
     'Reporting' => '<path d="M3 21h18 M5 17v-5h4v5 M10 17V8h4v9 M15 17V3h4v14"></path>',
     'Processing' => '<path d="M4 5h16v15H4z M8 9h8 M8 13h3 M15 13h1 M8 17h3 M15 17h1"></path>',
@@ -110,7 +121,14 @@ $teamHighlightIcons = [
                 <li class="about-team-card team-card">
                     <div class="team-card-header">
                         <figure class="team-portrait-space">
-                            <img src="<?= htmlspecialchars($profile['image'], ENT_QUOTES, 'UTF-8') ?>" width="786" height="1024" alt="<?= htmlspecialchars($profile['alt'], ENT_QUOTES, 'UTF-8') ?>" loading="<?= $profile['name'] === 'Amir Mirza' ? 'eager' : 'lazy' ?>" decoding="async">
+                            <?php
+                            $imagePath = __DIR__ . '/../../' . ltrim($profile['image'], '/');
+                            $imageVersion = filemtime($imagePath);
+                            if ($imageVersion === false) {
+                                throw new RuntimeException('Unable to determine the team photo version.');
+                            }
+                            ?>
+                            <img src="<?= htmlspecialchars($profile['image'] . '?v=' . $imageVersion, ENT_QUOTES, 'UTF-8') ?>" width="<?= $profile['imageWidth'] ?>" height="<?= $profile['imageHeight'] ?>" alt="<?= htmlspecialchars($profile['alt'], ENT_QUOTES, 'UTF-8') ?>" loading="<?= $profile['name'] === 'Amir Mirza' ? 'eager' : 'lazy' ?>" decoding="async">
                         </figure>
                         <div class="team-card-heading">
                             <h3><?= htmlspecialchars($profile['name'], ENT_QUOTES, 'UTF-8') ?></h3>
